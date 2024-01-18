@@ -1,0 +1,9 @@
+<p>company-list works!</p>
+<ng-container *ngIf="!isLoading; else loadingTemp">
+    <app-company-item *ngFor="let company of companies" [company]="company"></app-company-item>
+</ng-container>
+
+
+<ng-template #loadingTemp>
+
+</ng-template>
