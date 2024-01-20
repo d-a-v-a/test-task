@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Company } from './interfaces/company.interface';
+import { Company } from '../interfaces/company.interface';
 
 
 @Injectable({
@@ -15,12 +15,11 @@ export class GetDataService {
   constructor(private http: HttpClient) { 
   }
 
-  async getCompanies(count: number) {
+  getCompanies(count: number) {
     return this.http.get<Company[]>(`${this.baseUrl}${count}`).pipe(
       catchError(this.handleError)
     );
   }
-
 
   private handleError(error: any) {
     console.error('An error occurred', error);

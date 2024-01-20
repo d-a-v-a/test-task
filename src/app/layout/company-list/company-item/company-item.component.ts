@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Company } from '../../../interfaces/company.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-item',
@@ -10,4 +11,10 @@ import { Company } from '../../../interfaces/company.interface';
 })
 export class CompanyItemComponent {
   @Input() company!: Company;
+
+  constructor(private router: Router) {}
+
+  goToDetails() {
+    this.router.navigate(['/detail', this.company.id]);
+  }
 }

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CompanyItemComponent } from './company-item/company-item.component';
-import { GetDataService } from '../../get-data.service';
 import { Company } from '../../interfaces/company.interface';
+import { SaveCompanyService } from '../../services/save-company.service';
+import { tap } from 'rxjs';
+
 
 @Component({
   selector: 'app-company-list',
@@ -11,24 +13,17 @@ import { Company } from '../../interfaces/company.interface';
   templateUrl: './company-list.component.html',
   styleUrl: './company-list.component.scss'
 })
-export class CompanyListComponent implements OnInit {
-  protected companies: Company[] | undefined;
-  isLoading = false;
+export class CompanyListComponent{
+  
+  constructor(private saveCompanyService: SaveCompanyService) { }
+  isLoading$ = this.saveCompanyService.isLoading$;
 
-  constructor(private getDataService: GetDataService) { }
-
-  async ngOnInit() {
-    this.isLoading = true;
-    (await this.getDataService.getCompanies(100)).subscribe(
-      (data: Company[]) => {
-        this.companies = data;
-        this.isLoading = false;
-      },
-      (error) => {
-        console.error('Error: ', error);
-        this.isLoading = false;
+  companyList$ = this.saveCompanyService.companyList$.pipe(
+    tap(companyList => {
+      if (companyList === null) {
+        this.saveCompanyService.saveCompanies(50);
       }
-    );
+    }),
+  );
 
-  } 
 }
