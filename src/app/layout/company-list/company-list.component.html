@@ -1,5 +1,7 @@
-<p>company-list works!</p>
+
 <ng-container *ngIf="!(isLoading$ | async); else loadingTemp">
+    <app-company-filter (filterChange)="onFilterChange($event)"></app-company-filter>
+    <app-company-sort (sortField)="onSort($event)"></app-company-sort>
     <app-company-item *ngFor="let company of companyList$ | async" [company]="company"></app-company-item>
 </ng-container>
 

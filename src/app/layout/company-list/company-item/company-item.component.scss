@@ -1,0 +1,38 @@
+@import '../../../../styles.scss';
+.company-item {
+  @include flexible();
+  margin-bottom: 2rem;
+  padding: 2rem;
+  //border: 1px solid rgb(72, 107, 97);
+  background-color: rgb(126, 185, 168);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  border-radius: 1rem;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: rgb(102, 147, 177);
+    .company-item__text {
+        background-color: rgb(102, 147, 177);
+    }
+  }
+}
+
+.company-item__img {
+    margin-bottom: 2rem;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.company-item__text {
+    padding: 1rem;
+    background-color: rgb(146, 206, 187);
+    border-radius: 1rem;
+    p {
+        font-size: 1.5rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    transition: all 0.2s ease-in-out;
+}

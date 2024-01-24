@@ -1,0 +1,31 @@
+@import '../../../styles.scss';
+.company-detail {
+    @include flexible();
+  padding: 2rem;
+
+  transform: translateY(10%);
+  background-color: rgb(126, 185, 168);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.company-detail__text {
+    padding: 1rem;
+    background-color: rgb(146, 206, 187);
+    border-radius: 1rem;
+    p {
+        font-size: 1.5rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    transition: all 0.2s ease-in-out;
+    cursor: default;
+}
+
+.company-detail__img {
+    margin-bottom: 2rem;
+    object-fit: cover;
+    border-radius: 1rem;
+}

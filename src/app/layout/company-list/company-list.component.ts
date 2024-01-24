@@ -1,29 +1,30 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CompanyItemComponent } from './company-item/company-item.component';
-import { Company } from '../../interfaces/company.interface';
 import { SaveCompanyService } from '../../services/save-company.service';
-import { tap } from 'rxjs';
+import { CompanySortComponent } from './company-sort/company-sort.component';
+import { CompanyFilterComponent } from './company-filter/company-filter.component';
+import { Company } from '../../interfaces/company.interface';
 
 
 @Component({
   selector: 'app-company-list',
   standalone: true,
-  imports: [CompanyItemComponent, CommonModule],
+  imports: [CompanyItemComponent, CommonModule, CompanySortComponent, CompanyFilterComponent],
   templateUrl: './company-list.component.html',
   styleUrl: './company-list.component.scss'
 })
 export class CompanyListComponent{
-  
-  constructor(private saveCompanyService: SaveCompanyService) { }
+  constructor(private saveCompanyService: SaveCompanyService) {}
+
   isLoading$ = this.saveCompanyService.isLoading$;
+  companyList$ = this.saveCompanyService.filteredCompanyList$;
 
-  companyList$ = this.saveCompanyService.companyList$.pipe(
-    tap(companyList => {
-      if (companyList === null) {
-        this.saveCompanyService.saveCompanies(50);
-      }
-    }),
-  );
+  onSort(field: keyof Company) {
+    this.saveCompanyService.sortCompanies(field);
+  }
 
+  onFilterChange(filter: any) {
+    this.saveCompanyService.filterCompanies(filter);
+  }
 }

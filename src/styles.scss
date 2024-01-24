@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@mixin flexible() {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin zeroMarginPadding() {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    @include zeroMarginPadding();
+}
+
+* {
+    @include zeroMarginPadding();
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    &::before, &::after {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        box-sizing: border-box;
+        @include zeroMarginPadding();
+    }
+}
+

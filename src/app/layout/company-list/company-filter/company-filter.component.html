@@ -1,0 +1,22 @@
+<form [formGroup]="filterForm">
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" type="text" formControlName="business_name">
+    </div>
+  
+    <div>
+      <label for="type">Type:</label>
+      <select id="type" formControlName="type">
+        <option value="">All</option>
+        <option *ngFor="let type of types" [value]="type">{{type}}</option>
+      </select>
+    </div>
+  
+    <div>
+      <label for="industry">industry:</label>
+      <select id="industry" formControlName="industry">
+        <option value="">All</option>
+        <option *ngFor="let industry of industries" [value]="industry">{{industry}}</option>
+      </select>
+    </div>
+  </form>

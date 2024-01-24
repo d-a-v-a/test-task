@@ -1,1 +1,14 @@
-<p>company-detail works!</p>
+<div *ngIf="company !== null; else noDataTemp" class="company-detail">
+    <img [src]="company.logo" alt="Company Logo" class="company-detail__img">
+    <div class="company-detail__text">
+      <h2>{{ company.suffix }} "{{ company.business_name }}"</h2>
+      <p><strong>Industry:</strong> {{ company.industry }}</p>
+      <p><strong>Catch Phrase:</strong> {{ company.catch_phrase }}</p>
+      <p><strong>Phone Number:</strong> {{ company.phone_number }}</p>
+      <p><strong>Address:</strong> {{ company.full_address }}</p>
+    </div>
+  </div>
+
+  <ng-template #noDataTemp>
+    <p>No Data</p>
+  </ng-template>
